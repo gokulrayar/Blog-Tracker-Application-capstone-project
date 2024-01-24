@@ -1,0 +1,81 @@
+﻿@model IEnumerable<DAL.BlogInfo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Blog List</h1>
+
+<p>
+    <a asp-action="Create" class="create-button">Add New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr style="background-color: grey;">
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfCreation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BlogUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpInfo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr style="background-color: lightblue;">
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfCreation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlogUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpInfo.Email)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.BlogId" class="red-btn">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.BlogId" class="red-btn">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BlogId" class="red-btn">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<style>
+    .create-button {
+        background-color: green;
+        color: white;
+        padding: 5px 10px;
+        text-decoration: none;
+        display: inline-block;
+    }
+</style>
+<style>
+     .red-btn {
+         background-color: red;
+         color: white;
+         padding: 5px 10px;
+         border: none;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         cursor: pointer;
+     }
+</style>
